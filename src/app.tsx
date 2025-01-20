@@ -14,12 +14,12 @@ const playerStyles = new Map([
 ])
 
 export default function App(
-    { radioId, metadataRefreshInterval, playerStyle = "bottom" }: PlayerConfig,
+    { playerStyle = "bottom", ...config }: PlayerConfig,
 ) {
     const Player = useMemo(() => playerStyles.get(playerStyle) ?? BottomPlayer, [playerStyle])
 
     return (
-        <PlayerContextProvider radioId={radioId} metadataRefreshInterval={metadataRefreshInterval}>
+        <PlayerContextProvider {...config}>
             <Player />
         </PlayerContextProvider>
     )
