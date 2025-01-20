@@ -11,7 +11,9 @@ export default function MiniPlayer() {
     return (
         <div className="fixed bottom-4 right-4 bg-neutral-900 text-white flex gap-4 p-4 font-bold rounded-lg flex-col">
             <div className="flex items-center gap-4 w-full">
-                <img src={player.img} className="size-12 rounded aspect-square" alt="Song Artwork" />
+                {player.img && (
+                    <img src={player.img} className="size-12 rounded aspect-square" alt="Song Artwork" />
+                )}
                 <div className="flex-1 flex flex-col h-full gap-0.5 w-40">
                     <span className="truncate text-sm w-full">{player.songtitle}</span>
                     <span className="truncate text-xs w-full">{player.artist}</span>

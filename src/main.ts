@@ -14,5 +14,6 @@ const refreshIntervalSecondsString = playerRoot.getAttribute("data-metadata-refr
 const refreshIntervalSeconds = (refreshIntervalSecondsString && !Number.isNaN(+refreshIntervalSecondsString)) ? +refreshIntervalSecondsString : undefined
 
 const playerStyle = playerRoot.getAttribute("data-player-style") || undefined
+const disableArtwork = playerRoot.getAttribute("data-hide-artworks") === "true"
 
-render(h(App, { radioId, metadataRefreshInterval: refreshIntervalSeconds, playerStyle }), playerRoot)
+render(h(App, { radioId, metadataRefreshInterval: refreshIntervalSeconds, playerStyle, disableArtwork }), playerRoot)

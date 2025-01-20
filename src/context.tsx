@@ -6,7 +6,8 @@ import { useCallback, useContext, useEffect, useRef, useState } from "preact/hoo
 
 import { artworkUrl, getMetadata, getRadioStream } from "./data.ts"
 
-export type PlayerContextType = RadioMetadata & {
+type ExtendedMetadata = Omit<RadioMetadata, "img"> & { img: string | null }
+export type PlayerContextType = ExtendedMetadata & {
     volume: number,
     setVolume: (volume: number) => void,
     playing: boolean,
@@ -15,17 +16,17 @@ export type PlayerContextType = RadioMetadata & {
 }
 const PlayerContext = createContext<PlayerContextType | null>(null)
 
-export type PlayerConfig = { radioId: string, metadataRefreshInterval?: number, playerStyle?: string }
+export type PlayerConfig = { radioId: string, metadataRefreshInterval?: number, playerStyle?: string, disableArtwork?: boolean }
 
 export function PlayerContextProvider(
-    { radioId, children, metadataRefreshInterval = 15 }: PlayerConfig & { children: ComponentChildren },
+    { radioId, children, metadataRefreshInterval = 15, disableArtwork }: PlayerConfig & { children: ComponentChildren },
 ) {
     const [hidden, setHidden] = useState(false)
     const [playing, setPlaying] = useState(false)
     const [volume, setVolume] = useState(1)
-    const [metadata, setMetadata] = useState<RadioMetadata>({
+    const [metadata, setMetadata] = useState<ExtendedMetadata>({
         artist: "",
-        img: artworkUrl("img/nocover.jpg"),
+        img: disableArtwork ? null : artworkUrl("img/nocover.jpg"),
         song: "Loading...",
         songtitle: "",
     })
@@ -33,7 +34,7 @@ export function PlayerContextProvider(
 
     const updateMetadata = useCallback(async () => {
         const meta = await getMetadata(radioId)
-        setMetadata({ ...meta, img: artworkUrl(meta.img) })
+        setMetadata({ ...meta, img: disableArtwork ? null : artworkUrl(meta.img) })
         if (navigator.mediaSession) {
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: meta.songtitle,

@@ -13,7 +13,9 @@ export default function BottomPlayer() {
             <button className="size-8 cusrsor-pointer shrink-0" onClick={() => player.togglePlaying()}>
                 <img src={player.playing ? pauseIcon : playIcon} alt={player.playing ? "Pause icon" : "Play icon"} />
             </button>
-            <img src={player.img} className="size-8 rounded aspect-square" alt="Song Artwork" />
+            {player.img && (
+                <img src={player.img} className="size-8 rounded aspect-square" alt="Song Artwork" />
+            )}
             <span className="truncate">{player.song}</span>
             <div className="flex-1"></div>
             <VolumeSlider />
