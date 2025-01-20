@@ -15,8 +15,10 @@ export type PlayerContextType = RadioMetadata & {
 }
 const PlayerContext = createContext<PlayerContextType | null>(null)
 
+export type PlayerConfig = { radioId: string, metadataRefreshInterval?: number, playerStyle?: string }
+
 export function PlayerContextProvider(
-    { radioId, children, metadataRefreshInterval = 15 }: { radioId: string, children: ComponentChildren, metadataRefreshInterval?: number },
+    { radioId, children, metadataRefreshInterval = 15 }: PlayerConfig & { children: ComponentChildren },
 ) {
     const [hidden, setHidden] = useState(false)
     const [playing, setPlaying] = useState(false)

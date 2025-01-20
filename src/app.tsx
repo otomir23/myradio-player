@@ -1,3 +1,5 @@
+import type { PlayerConfig } from "./context.tsx"
+
 import { useMemo } from "preact/hooks"
 
 import BottomPlayer from "./bottom-player.tsx"
@@ -12,7 +14,7 @@ const playerStyles = new Map([
 ])
 
 export default function App(
-    { radioId, metadataRefreshInterval, playerStyle = "bottom" }: { radioId: string, metadataRefreshInterval?: number, playerStyle?: string },
+    { radioId, metadataRefreshInterval, playerStyle = "bottom" }: PlayerConfig,
 ) {
     const Player = useMemo(() => playerStyles.get(playerStyle) ?? BottomPlayer, [playerStyle])
 
