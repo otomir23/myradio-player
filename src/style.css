@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* FIXME: Hack for weird templates that change html font-size and break rem scaling */
+/* postcss-scope:ignore */
+html {
+    font-size: 16px!important;
+}
