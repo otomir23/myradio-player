@@ -25,10 +25,11 @@ export function PlayerContextProvider(
     const [playing, setPlaying] = useState(false)
     const [volume, setVolume] = useState(1)
     const [metadata, setMetadata] = useState<ExtendedMetadata>({
-        artist: "",
+        title: "...",
+        artist: "...",
         img: disableArtwork ? null : artworkUrl("img/nocover.jpg"),
         song: "Loading...",
-        songtitle: "",
+        songtitle: "...",
     })
     const audio = useRef<HTMLAudioElement>(null!)
 
