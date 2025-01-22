@@ -19,7 +19,7 @@ export default function BottomPlayer() {
             <span className="truncate">{player.song}</span>
             <div className="flex-1"></div>
             <VolumeSlider />
-            <button onClick={player.hide}>
+            <button onClick={player.hide} className="shrink-0">
                 <img src={closeIcon} className="size-4" alt="Close icon" />
             </button>
         </div>
