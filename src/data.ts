@@ -1,4 +1,5 @@
 export type RadioMetadata = {
+    title: string,
     artist: string,
     song: string,
     songtitle: string,
