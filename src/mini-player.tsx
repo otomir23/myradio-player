@@ -9,7 +9,7 @@ export default function MiniPlayer() {
     const player = usePlayerContext()
 
     return (
-        <div className="fixed bottom-4 right-4 bg-neutral-900 text-white flex gap-4 p-4 font-bold rounded-lg flex-col">
+        <div className="fixed bottom-4 right-4 bg-neutral-900 text-white flex gap-4 p-4 font-bold rounded-lg flex-col z-50">
             <div className="flex items-center gap-4 w-full">
                 {player.img && (
                     <img src={player.img} className="size-12 rounded aspect-square" alt="Song Artwork" />

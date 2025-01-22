@@ -9,7 +9,7 @@ export default function BottomPlayer() {
     const player = usePlayerContext()
 
     return (
-        <div className="fixed bottom-0 inset-x-0 bg-black text-white flex gap-4 p-4 items-center font-bold">
+        <div className="fixed bottom-0 inset-x-0 bg-black text-white flex gap-4 p-4 items-center font-bold z-50">
             <button className="size-8 cusrsor-pointer shrink-0" onClick={() => player.togglePlaying()}>
                 <img src={player.playing ? pauseIcon : playIcon} alt={player.playing ? "Pause icon" : "Play icon"} />
             </button>
